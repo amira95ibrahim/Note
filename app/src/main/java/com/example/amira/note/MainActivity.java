@@ -1,10 +1,10 @@
 package com.example.amira.note;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,25 +17,30 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
+
     ListView listView;
-    ArrayAdapter<String> arrayAdapter;
-    static ArrayList<String> mylist;
+    static ArrayList<String> mylist=new ArrayList<String>();
+    static ArrayAdapter<String> arrayAdapter ;
+    static Set<String> set;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mylist=new ArrayList<String>();
-        mylist.add("Mera");
-        mylist.add("Beroo");
-        mylist.add("Dody");
 
-        arrayAdapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mylist);
+            mylist.add("Mera");
+
+        arrayAdapter =new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,mylist);
         listView=(ListView)findViewById(R.id.listview);
         listView.setAdapter(arrayAdapter);
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(I);
             }
         });
+
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -82,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
